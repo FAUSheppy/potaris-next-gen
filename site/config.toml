@@ -86,7 +86,7 @@ disqusShortname = ''
     weight = 10
   [[Languages.de-de.menu.main]]
     pageRef="posts"
-    name = 'Beiträge'
+    name = 'Themen Beiträge'
     url = '/posts/'
     weight = 20
   [[Languages.de-de.menu.main]]
@@ -97,7 +97,7 @@ disqusShortname = ''
 
 [Languages.de-de.params]
   sitename = "Yannik Schmidt"
-  defaultColor = "dark" # set color mode: dark, light, auto
+  defaultColor = "dark"
   description = "Yannik Schmidt Freelancer Python, Linux, DevOps (Fullstack)"
   mainSections = ['posts']
   toc = false
