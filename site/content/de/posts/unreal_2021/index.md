@@ -4,6 +4,20 @@ date: 2021-05-29
 description: Bluprints & Behaviour Trees
 ---
 
+<style>
+    img{
+        /*border: 2px solid #acb3bb !important;*/
+        max-height: 50vh;
+        max-width: 100%;
+        width: auto !important;
+        height: auto;
+        margin-bottom: 1vw;
+    }
+    .page-content>p{
+        display: flex;
+    }
+</style>
+
 Pathfinding in Unreal Engine can become very overwhelming, as soon as you want to go beyond simplistic two dimensional pathing. Luckily there is a plugin, which allows us to create a simple Behaviour Tree (from now “BT”) for any kind of pathfinding - even if there are very dynamicly moving objects in the level.
 
 ![Complete AI behavioural tree (BT)](/ue_2021_complete_pathing_tree.png)
@@ -23,7 +37,7 @@ Before we can follow the player, or anything else, we need to know it’s locati
 
 Firstly create the blackboard and a Vector3d-key to store the player location.
 
-![Create a new blackboard](/ue_2021_new_blackboard.png)
+![Create a new blackboard](/ue_2021_new_blackboard.png "testestestset")
 
 ![Create a Vector3d-key](/ue_2021_create_vector3d.png)
 
@@ -54,10 +68,12 @@ Create a new decorator, next to the new task creation. Decorators can be used in
 
 
 ![Decorated sequence with a selector](/ue_2021_decorator.png)
+
 The decorator has to overwrite the function “PerformConditionCheck”
 
+In the newly created decorator blueprint, click “+” and select PerformConditionCheck
 
-![In the newly created decorator blueprint, click “+” and select PerformConditionCheck](/ue_2021_perform_check.png)
+![Perform Check](/ue_2021_perform_check.png)
 
 Again, we need to get the player pawn, query the AI controller and run the BT for it’s controlled pawn. We can then use the distance-node to retrieve the distance between the two location (3D vectors in this case) and compare the result to a threshold value. Obviously the “GetPlayerPawn -> GetActorLocation” could be replaced by any target location. It might also be advisable, to have a maximum distance check for performance reasons, which is not displayed here.
 
@@ -83,11 +99,7 @@ In my case, I have added the standard Unreal chair.
 
 Finally , you might want to check, “Orient Rotation to Movement” in the “Character Movement Component”, to make the chair turn in the right direction instead of just strafing to the target.
 
-<sup>By Yannik Schmidt<br><br>
-Topics:
-* Unreal Engine
-* Pathfinding
-* Behaviour Trees
-* Blueprints
-</sup>
+<br>
+<sup style="font-style: italic;">by Yannik Schmidt</sup>
 
+<sup>**Tags:** _Unreal Engine_, _Pathfinding_, _Algorithms_</sup>
