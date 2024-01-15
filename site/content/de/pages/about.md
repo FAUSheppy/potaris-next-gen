@@ -40,7 +40,7 @@ applikationsübergreifenden Authentifizierung.
 
 **Fullstack Entwickler**<br>
 Bearbeitung von Feature-Requests für Python-Software zur Wohngebäudediagnostik & Wärmebild-Datenanalyse aus vorherigen Projekten, insbesondere Containerisierung und GitHub-CI Integration.
-<br><sup>Thermoscan Thermographie GmbH)(14 Monate)</sup><br><br>
+<br><sup>Thermoscan Thermographie GmbH, 14 Monate</sup><br><br>
 
 **Python Fullstack Entwickler**<br>
 Entwicklung eines Livestream & Front- und Backends zur Nutzung u.a. von Pure Storrage für Konferenzen während der Corona-Pandemie.
