@@ -3,55 +3,70 @@ title: About
 description: 'Lebenslauf Yannik Schmidt'
 author: Yannik Schmidt
 ---
-<style>.toc{ display: none } .header{ display: none !important }</style>
+<style>.toc{ display: none } .header{ display: none !important }
+sup{
+     float: right;
+     color: #8fd526;
+     top: 0.5em;
+}
+</style>
 
 ## Kontakt
 
-* _Lebenslauf_ ([pdf]() - [docx]() - [odt]())
+* _Lebenslauf_ ([pdf](/cv/Yannik-Schmidt-minimal-DE-Linux-python-fullstack.pdf) - [docx](/cv/Yannik-Schmidt-minimal-DE-Linux-python-fullstack.docx) - [odt](/cv/Yannik-Schmidt-minimal-DE-Linux-python-fullstack.odt))
+* _CV (English)_ * ([pdf](/cv/Yannik-Schmidt-minimal-DE-Linux-python-fullstack.pdf) - [docx](/cv/Yannik-Schmidt-minimal-DE-Linux-python-fullstack.docx) - [odt](/cv/Yannik-Schmidt-minimal-DE-Linux-python-fullstack.odt))
 * _E-Mail_: [yannik.schmidt@potaris.de](mailto:yannik.schmidt@potaris.de)
 * _Telefon_: [+49-176-761-66894](tel:+4917676166894)
 
 ## Projektübersicht
 
-**DevOps Engineer (ING DiBa AG) [6 Monate]**<br>
+**DevOps Engineer**<br>
 Groß angelegte Private Cloud Migration von Third-Party Anwendungen auf
 Windows und Linux im HV Bankumfeld auf Basis von Ansible, Azure DevOps
 und Python mit Schwerpunkt auf Monitoring (Prometheus, Grafana, ELK-
 Stack).
+<br><sup>ING DiBa AG, 6 Monate</sup><br><br>
 
-**Python Fullstack Entwickler (Univention GmbH) [10 Monate]**<br>
+**Python Fullstack Entwickler**<br>
 Erweiterung des Identität-Access-Management (IAM) Systems auf Basis von
 Keycloak/OAuth2 für den Pilotbetrieb des Sovereign Workplace (SWP) für das
 Bundesministerium des Innern. Insbesondere direkte Zusammenarbeit mit
 Nextcloud, Synapse und dem Open-XChange-Team, zur Implementierung von
-applikationsübergreifenden Authentifizierung. (u.a. UCS Intercom Service
-https://github.com/univention/intercom-service )
+applikationsübergreifenden Authentifizierung. (u.a. [UCS Intercom Service]
+(https://github.com/univention/intercom-service))
+<br><sup>Univention GmbH, 10 Monate</sup><br><br>
 
-**Fullstack Entwickler (Thermoscan Thermographie GmbH)(14 Monate)**<br>
+**Fullstack Entwickler**<br>
+<br><sup>Thermoscan Thermographie GmbH)(14 Monate)</sup><br><br>
 
-**The Marlow Pugnetti Company (Python Fullstack Entwickler)[2 Monate]**<br>
+**Python Fullstack Entwickler**<br>
 Entwicklung eines Livestream & Front- und Backends zur Nutzung u.a. von Pure Storrage für Konferenzen während der Corona-Pandemie.
+<br><sup>The Marlow Pugnetti Company, 2 Monate</sup><br><br>
 
-**(Python-)AWS Entwickler (Jeff-3D Animations)[3 Monate]**<br>
+**(Python-)AWS Entwickler**<br>
+<br><sup>Jeff-3D Animations, 3 Monate</sup><br><br>
 
-**Fullstack Entwickler (Thermoscan Thermographie GmbH)(14 Monate)**<br>
+**Fullstack Entwickler**<br>
 Entwicklung von Businesslogik zur Verwaltung von Aufträgen und
 Datenanalyse in der Wohngebäudediagnostik. Primär auf Basis von Python
 (Analyse) und C++/Qt5 (Frontend) mit docker-compose Setups auf Linux
 (Debian), Automatisierung via Github Actions.
+<br><sup>Thermoscan Thermographie GmbH, 14 Monate</sup><br><br>
 
-
+**Linux Administrator**
 Verantwortlicher für Deployment & Betrieb von diversen Java-Web
 Anwendungen und Datenbanken für den Zensus 2022 und die deutsche
 Sterbestatistik. Server primär Debian und CentOS, Einsatz diverser
 quelloffener Technologien.
+<br><sup>Bayrisches Landesamt für Statistik, 7 Monate</sup><br><br>
 
-**Linux Administrator (Omikron Data Quality GmbH)[13 Monate]**<br>
+**Linux Administrator**<br>
 Management des ~2000 Einheiten Serverclusters des Fact-Finder Backends
 für Onlineshops, u.a. für Intersport & Mytheresa. Verantwortlich für
 Automatisierung (Ansible, portainer, docker-swarm), Monitoring (Zabbix,
 python, Grafana) und allgemeine Linuxthemen. Migration nach Kubernetes
 für die MediaMarkt-Saturn Gruppe.
+<br><sup>Omikron Data Quality GmbH, 13 Monate</sup><br><br>
 
 ## Studium
 

@@ -10,7 +10,7 @@ RUN git clone https://github.com/hugo-sid/hugo-blog-awesome.git themes/hugo-blog
 RUN mkdir /hugo-site/themes/hugo-blog-awesome/site/
 COPY site/ /hugo-site/themes/hugo-blog-awesome/site/
 RUN ls -ll /hugo-site/themes/hugo-blog-awesome/site/
-RUN ln -s /hugo-site/themes/hugo-blog-awesome/site/content/de/posts/ /hugo-site/themes/hugo-blog-awesome/site/content/en/posts/
+RUN ln -s /hugo-site/themes/hugo-blog-awesome/site/content/de/posts/ /hugo-site/themes/hugo-blog-awesome/site/content/en/posts
 WORKDIR /hugo-site/themes/hugo-blog-awesome/site
 
 ENTRYPOINT ["hugo"]
