@@ -9,6 +9,9 @@ sup{
      color: #8fd526;
      top: 0.5em;
 }
+p{
+    text-align: unset;
+}
 </style>
 
 ## Kontakt
@@ -32,8 +35,7 @@ Erweiterung des Identität-Access-Management (IAM) Systems auf Basis von
 Keycloak/OAuth2 für den Pilotbetrieb des Sovereign Workplace (SWP) für das
 Bundesministerium des Innern. Insbesondere direkte Zusammenarbeit mit
 Nextcloud, Synapse und dem Open-XChange-Team, zur Implementierung von
-applikationsübergreifenden Authentifizierung. (u.a. [UCS Intercom Service]
-(https://github.com/univention/intercom-service))
+applikationsübergreifenden Authentifizierung.
 <br><sup>Univention GmbH, 10 Monate</sup><br><br>
 
 **Fullstack Entwickler**<br>
@@ -51,14 +53,14 @@ Entwicklung von Businesslogik zur Verwaltung von Aufträgen und
 Datenanalyse in der Wohngebäudediagnostik. Primär auf Basis von Python
 (Analyse) und C++/Qt5 (Frontend) mit docker-compose Setups auf Linux
 (Debian), Automatisierung via Github Actions.
-<br><sup>Thermoscan Thermographie GmbH, 14 Monate</sup><br><br>
+<br><br><sup>Thermoscan Thermographie GmbH, 14 Monate</sup><br><br>
 
-**Linux Administrator**
+**Linux Administrator**<br>
 Verantwortlicher für Deployment & Betrieb von diversen Java-Web
 Anwendungen und Datenbanken für den Zensus 2022 und die deutsche
 Sterbestatistik. Server primär Debian und CentOS, Einsatz diverser
 quelloffener Technologien.
-<br><sup>Bayrisches Landesamt für Statistik, 7 Monate</sup><br><br>
+<br><br><sup>Bayrisches Landesamt für Statistik, 7 Monate</sup><br><br>
 
 **Linux Administrator**<br>
 Management des ~2000 Einheiten Serverclusters des Fact-Finder Backends

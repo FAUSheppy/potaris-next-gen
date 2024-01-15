@@ -9,12 +9,15 @@ sup{
     color: #8fd526;
     top: 0.5em;
 }
+p{
+    text-align: unset;
+}
 </style>
 
 ## Contact
 
-* _CV (English)_ ([pdf](/cv/Yannik-Schmidt-minimal-DE-Linux-python-fullstack.pdf) - [docx](/cv/Yannik-Schmidt-minimal-DE-Linux-python-fullstack.docx) - [odt](/cv/Yannik-Schmidt-minimal-DE-Linux-python-fullstack.odt))
-* _CV (German)_ ([pdf](/cv/Yannik-Schmidt-minimal-DE-Linux-python-fullstack.pdf) - [docx](/cv/Yannik-Schmidt-minimal-DE-Linux-python-fullstack.docx) - [odt](/cv/Yannik-Schmidt-minimal-DE-Linux-python-fullstack.odt))
+* _CV (English)_ [PDF](/cv/Yannik-Schmidt-minimal-DE-Linux-python-fullstack.pdf) - [Word](/cv/Yannik-Schmidt-minimal-DE-Linux-python-fullstack.docx) - [odt](/cv/Yannik-Schmidt-minimal-DE-Linux-python-fullstack.odt)
+* _CV (German)_ [PDF](/cv/Yannik-Schmidt-minimal-DE-Linux-python-fullstack.pdf) - [Word](/cv/Yannik-Schmidt-minimal-DE-Linux-python-fullstack.docx) - [odt](/cv/Yannik-Schmidt-minimal-DE-Linux-python-fullstack.odt)
 * _E-Mail:_ [yannik.schmidt@potaris.de](mailto:yannik.schmidt@potaris.de)
 * _Phone:_ [+49-176-761-66894](tel:+4917676166894)
 
@@ -42,15 +45,9 @@ Infradred measurements of apartment complexes and create a GitHub-
 Actions pipelines for containerization and deployment.
 <br><sup>Thermoscan Thermographie GmbH, 14 months</sup><br><br>
 
-**The Marlow Pugnetti Company**<br>
-Entwicklung eines Livestream & Front- und Backends zur Nutzung u.a. von Pure Storrage für Konferenzen während der Corona-Pandemie.
-<br><sup>Python Fullstack Developer, 2 months</sup><br><br>
-
-**(Python-)AWS Developer**<br>
-Implementing feature requests for Python-software, used in analysing
-Infradred measurements of apartment complexes and create a GitHub-
-Actions pipelines for containerization and deployment.
-<br><sup>Jeff-3D Animations, 3 months</sup><br><br>
+**Python Fullstack Developer**<br>
+Development of a livestream and front-end and back-end system for use by Pure Storage for webcasts during the COVID-19 pandemic.
+<br><sup>The Marlow Pugnetti Company, 2 months</sup><br><br>
 
 **Fullstack Developer**<br>
 Development of business logic for contract management and data-
