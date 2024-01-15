@@ -39,14 +39,12 @@ applikationsübergreifenden Authentifizierung.
 <br><sup>Univention GmbH, 10 Monate</sup><br><br>
 
 **Fullstack Entwickler**<br>
+Bearbeitung von Feature-Requests für Python-Software zur Wohngebäudediagnostik & Wärmebild-Datenanalyse aus vorherigen Projekten, insbesondere Containerisierung und GitHub-CI Integration.
 <br><sup>Thermoscan Thermographie GmbH)(14 Monate)</sup><br><br>
 
 **Python Fullstack Entwickler**<br>
 Entwicklung eines Livestream & Front- und Backends zur Nutzung u.a. von Pure Storrage für Konferenzen während der Corona-Pandemie.
 <br><sup>The Marlow Pugnetti Company, 2 Monate</sup><br><br>
-
-**(Python-)AWS Entwickler**<br>
-<br><sup>Jeff-3D Animations, 3 Monate</sup><br><br>
 
 **Fullstack Entwickler**<br>
 Entwicklung von Businesslogik zur Verwaltung von Aufträgen und
