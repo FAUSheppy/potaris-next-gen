@@ -16,8 +16,6 @@ p{
 
 ## Kontakt
 
-* _Lebenslauf_ ([pdf](/cv/Yannik-Schmidt-minimal-DE-Linux-python-fullstack.pdf) - [docx](/cv/Yannik-Schmidt-minimal-DE-Linux-python-fullstack.docx) - [odt](/cv/Yannik-Schmidt-minimal-DE-Linux-python-fullstack.odt))
-* _CV (English)_ * ([pdf](/cv/Yannik-Schmidt-minimal-DE-Linux-python-fullstack.pdf) - [docx](/cv/Yannik-Schmidt-minimal-DE-Linux-python-fullstack.docx) - [odt](/cv/Yannik-Schmidt-minimal-DE-Linux-python-fullstack.odt))
 * _E-Mail_: [yannik.schmidt@potaris.de](mailto:yannik.schmidt@potaris.de)
 * _Telefon_: [+49-176-761-66894](tel:+4917676166894)
 
