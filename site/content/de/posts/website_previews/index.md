@@ -1,6 +1,6 @@
 ---
 title: Advanced Website Previews
-date: 2021-11-29
+date: 2015-04-10
 description: Advanced website previews with open graph protocol and structured data
 ---
 
