@@ -23,7 +23,7 @@ jobs:
           username: ${{ secrets.REGISTRY_USER }}
           password: ${{ secrets.REGISTRY_PASS }}
       -
-        name: atlantis-hub
+        name: build and push potaris next-gen
         uses: docker/build-push-action@v3
         with:
           context: .
