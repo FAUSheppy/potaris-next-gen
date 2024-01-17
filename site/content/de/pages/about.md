@@ -41,7 +41,7 @@ Bearbeitung von Feature-Requests für Python-Software zur Wohngebäudediagnostik
 <br><sup>Thermoscan Thermographie GmbH, 14 Monate</sup><br><br>
 
 **Python Fullstack Entwickler**<br>
-Entwicklung eines Livestream & Front- und Backends zur Nutzung u.a. von Pure Storrage für Konferenzen während der Corona-Pandemie.
+Entwicklung eines Livestream & Front- und Backends zur Nutzung u.a. von Pure-Storage für Konferenzen während der Corona-Pandemie.
 <br><sup>The Marlow Pugnetti Company, 2 Monate</sup><br><br>
 
 **Fullstack Entwickler**<br>
@@ -73,7 +73,7 @@ für die MediaMarkt-Saturn Gruppe.
     * Betriebssysteme
     * IT-Sicherheit
     * Compilerbau
-    * Parrallel Programmierung
+    * Parallele Programmierung
 
 ## Impressum
 ### Angaben gemäß § 5 TMG:

@@ -7,7 +7,7 @@ description: Python Flask Production Migration
 I like to start my flask projects with a simple __name__ == "__main__" with argparse and app.run(). But obviously the flask inbuilt server is not the fastest and probably not the safest either. This is why you should eventually use a WSGI-runner like waitress to run your app. This post will show how to migrate, while keeping any standalone capabilities.
 
 ## Migrating “__init__” code
-In short, everything in your if __name__ block is not going to be executed anymore, the simplest solution is to move it to a `@app.before_first_request` anotated function, so:
+In short, everything in your if __name__ block is not going to be executed anymore, the simplest solution is to move it to a `@app.before_first_request` annotated function, so:
 
     app = Flask("NAME")
     
@@ -45,7 +45,7 @@ We can then change it like a namespace-object (basically a dict-object). Remembe
     ANOTHER_VARIABLE=42
     server.py:
     
-    app = Flask("LOL")
+    app = Flask("NAME")
     app.config.from_object("config") # note the missing '.py'
     app.config["MORE_OPTIONS"] = "Hello"
     

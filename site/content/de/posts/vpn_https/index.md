@@ -118,7 +118,7 @@ You have to do this for all servers previously listening on port 443. As a siden
                              '$session_time';
     access_log /var/log/nginx/tls.log sni_multiplexer;
 
-For me on Debian 9 (but this bug exists on multiple distributions), subsequent starts would fail, because nginx didn’t clear the unix-socket files on exit. You can fix this behaviour by editing the systemd-unit file with `systemctl edit nginx` and change `--retry QUIT/5` in `ExecStop` to `--retry TERM/5` by writing the flowing:
+For me on Debian 9 (but this bug exists on multiple distributions), subsequent starts would fail, because nginx didn’t clear the unix-socket files on exit. You can fix this behavior by editing the systemd-unit file with `systemctl edit nginx` and change `--retry QUIT/5` in `ExecStop` to `--retry TERM/5` by writing the flowing:
 
     [Service]
     # unset exec stop
@@ -198,7 +198,7 @@ Just remove the *“vpn.”*-prefix/subdomain and add the client certificate (ac
     CAPath = /etc/ssl/certs/ checkHost = atlantishq.de cert = /etc/stunnel/clientcert{.p12|.pem|...}
     Workaround for HTTP2
 
-Using the certificate multiplexing solution, you cannot enable the HTTP2 protocol in nginx, because nginx only allows for the `http2` directive to be a) in a subblock of the `http` and b) the `http2` directive must be in the same v-server as the `ssl` directive. This is not an inherent problem but a bug/missing feature in *nginx* *(EDIT 2022: Fixed in nginx > 21.0.0)*. If you want to use *HTTP2* you have to multiplex the connection based on protocol (or SNI) first, and then multiplex the connections that weren't *HTTP2* (which would include the VPN connection) second. Here is a small code excerpt to give you an Idea on how to do that:
+Using the certificate multiplexing solution, you cannot enable the HTTP2 protocol in nginx, because nginx only allows for the `http2` directive to be a) in a sub-block of the `http` and b) the `http2` directive must be in the same v-server as the `ssl` directive. This is not an inherent problem but a bug/missing feature in *nginx* *(EDIT 2022: Fixed in nginx > 21.0.0)*. If you want to use *HTTP2* you have to multiplex the connection based on protocol (or SNI) first, and then multiplex the connections that weren't *HTTP2* (which would include the VPN connection) second. Here is a small code excerpt to give you an Idea on how to do that:
 
     stream {
         ...

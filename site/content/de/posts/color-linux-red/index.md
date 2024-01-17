@@ -4,7 +4,7 @@ date: 2017-03-10
 description: Color the stderr of Linux red for better visibility
 ---
 
-![Colored std-err ouput](/color_red/color_red.png)
+![Colored std-err output](/color_red/color_red.png)
 
 One of the few things, which always felt inconvenient to me when working in Linux terminals, was the fact that I couldn’t easily differentiate between error output and normal output. Even the windows Powershell has this feature by default. Fortunately I was shown an approach using `LD_PRELOAD`, to preload a custom, self-compiled library, overwriting the output function of *stderr* with functions adding a color-coding. This approach was thought up by [another student at FAU](https://ruderich.org/simon/coloredstderr/) based on some existing work. I use this with *z-shell*, but there is no reason, why it wouldn't work with bash or any other shell-types.
 

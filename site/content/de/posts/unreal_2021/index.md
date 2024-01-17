@@ -1,7 +1,7 @@
 ---
 title: 3D-Pathfinding in Unreal Engine
 date: 2021-05-29
-description: Bluprints & Behaviour Trees
+description: Blueprints & Behavior Trees
 ---
 
 <style>
@@ -18,9 +18,9 @@ description: Bluprints & Behaviour Trees
     }
 </style>
 
-Pathfinding in Unreal Engine can become very overwhelming, as soon as you want to go beyond simplistic two dimensional pathing. Luckily there is a plugin, which allows us to create a simple Behaviour Tree (from now “BT”) for any kind of pathfinding - even if there are very dynamicly moving objects in the level.
+Pathfinding in Unreal Engine can become very overwhelming, as soon as you want to go beyond simplistic two dimensional pathing. Luckily there is a plugin, which allows us to create a simple Behavior Tree (from now “BT”) for any kind of pathfinding - even if there are very dynamically moving objects in the level.
 
-![Complete AI behavioural tree (BT)](/ue_2021_complete_pathing_tree.png)
+![Complete AI behavioral tree (BT)](/ue_2021_complete_pathing_tree.png)
 
 This is the BT we will create. It retrieves the player location and then executes an action (in this case “Shoot”), while flying (pathfinding) towards the player location - if the player is beyond a threshold range. The shoot task will not be explained in this tutorial as there are already plenty of guides about shooting projectiles out there.
 
@@ -33,11 +33,11 @@ If it does not yet exist, create a directory called “Plugins” in the root di
 ![Enable the plugin](/ue_2021_enable_plugin.png)
 
 ## Retrieving the target Location
-Before we can follow the player, or anything else, we need to know it’s location. There are many ways to accomplish this, but we will go with the most basic: A custom task called “GetPlayerLocation”, which retrieves the players position and saves it into a blackboard key. A blackboard is a a key-value store which can be associated with a behavioural tree.
+Before we can follow the player, or anything else, we need to know it’s location. There are many ways to accomplish this, but we will go with the most basic: A custom task called “GetPlayerLocation”, which retrieves the players position and saves it into a blackboard key. A blackboard is a a key-value store which can be associated with a behavioral tree.
 
 Firstly create the blackboard and a Vector3d-key to store the player location.
 
-![Create a new blackboard](/ue_2021_new_blackboard.png "testestestset")
+![Create a new blackboard](/ue_2021_new_blackboard.png " ")
 
 ![Create a Vector3d-key](/ue_2021_create_vector3d.png)
 
@@ -45,7 +45,7 @@ Secondly, right next to “New Blackboard”, create a new task and call it “G
 
 ![Add a blackboard key as a variable to the Task](/ue_2021_bb_vector_key.png)
 
-Get the player pawn, and the location of the pawn in the blueprint and save it as a blackboard value. It’s usually better, to calculate a position in front of the player, rather then try to pathfind to a position within the player mesh. This can be achieved by using “GetForwardVector” on the player pawn and multiplying it by the desired distance to the centre of the player mesh. Use the blackboard value parameter and the “SetBlackboardValueAsVector”-node to save the computed value. Finally call the “FinishExecute”-node to indicated the task has finished.
+Get the player pawn, and the location of the pawn in the blueprint and save it as a blackboard value. It’s usually better, to calculate a position in front of the player, rather then try to path-find to a position within the player mesh. This can be achieved by using “GetForwardVector” on the player pawn and multiplying it by the desired distance to the center of the player mesh. Use the blackboard value parameter and the “SetBlackboardValueAsVector”-node to save the computed value. Finally call the “FinishExecute”-node to indicated the task has finished.
 
 
 ![Get Player Position Task](/ue_2021_get_player_position.png)
@@ -56,7 +56,7 @@ Now add the newly created task to a basic sequence in the BT.
 ![“GetPlayerLocation”-task in BT](/ue_2021_get_player_position_bt.png)
 
 # Fly to - Task
-When the plugin has loaded correctly, we should be able add a task called “Fly to”, which the plugin provides. This task requires the blackboard Vector3d key from earlier as “FlightLocationKey”. This key is also the only mandetory value you have to set. The options are mostly self explanatory and can also mostly be left to the default values for now. Most interesting perhaps, for first time users, are the “Debug Params”, which offer various visualizations during play.
+When the plugin has loaded correctly, we should be able add a task called “Fly to”, which the plugin provides. This task requires the blackboard Vector3d key from earlier as “FlightLocationKey”. This key is also the only mandatory value you have to set. The options are mostly self explanatory and can also mostly be left to the default values for now. Most interesting perhaps, for first time users, are the “Debug Params”, which offer various visualizations during play.
 
 
 ![“Fly To” - task provided by plugin](/ue_2021_fly_to_task.png)
