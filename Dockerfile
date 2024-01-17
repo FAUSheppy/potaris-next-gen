@@ -6,7 +6,7 @@ RUN apk add --no-cache --repository=https://dl-cdn.alpinelinux.org/alpine/edge/c
 RUN hugo new site hugo-site
 WORKDIR /hugo-site
 
-RUN git clone https://github.com/hugo-sid/hugo-blog-awesome.git themes/hugo-blog-awesome
+RUN git clone https://github.com/FAUSheppy/hugo-sig-fork.git themes/hugo-blog-awesome
 RUN mkdir /hugo-site/themes/hugo-blog-awesome/site/
 COPY site/ /hugo-site/themes/hugo-blog-awesome/site/
 RUN ls -ll /hugo-site/themes/hugo-blog-awesome/site/
