@@ -1,6 +1,6 @@
 ---
 title: Advanced LDAP integration with Keycloak
-date: 2023-01-05
+date: 2024-01-05
 description: Connect LDAP to Keycloak from scratch
 ---
 
