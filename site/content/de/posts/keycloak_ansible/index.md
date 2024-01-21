@@ -72,8 +72,6 @@ Let's start with the Keycloak compose file. If you are going with Ansible this s
         - 5050:8080
         depends_on:
         - postgres
-        secrets:
-        - postgres_password
       postgres:
         container_name: postgres-container
         image: postgres:15.1
@@ -90,9 +88,6 @@ Let's start with the Keycloak compose file. If you are going with Ansible this s
     secrets:
       postgres_password:
         file: postgres_password
-
-    volumes:
-      postgres-data:
 
     ...
 
