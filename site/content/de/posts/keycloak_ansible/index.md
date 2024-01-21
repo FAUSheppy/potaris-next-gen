@@ -137,12 +137,10 @@ As an Ansible-tasks file it should look like this:
         src: "keycloak.yaml"
         dest: "/opt/keycloak/"
 
-    - name: Copy compose environment files keycloak
+    - name: Copy compose postgres secret file
       copy:
         content: "{{ keycloak_postgres_password }}"
         dest: "/opt/keycloak/postgres_password"
-      with_items:
-        - postgres_password
 
     - name: Deploy compose templates
       community.docker.docker_compose:
