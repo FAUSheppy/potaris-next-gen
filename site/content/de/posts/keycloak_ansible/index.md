@@ -403,10 +403,10 @@ With these files ready we can finally run the whole thing with:
 
     ansible-playbook -i hosts.ini playbook.yaml --diff
 
-## Futher Reading
+## Further Reading
 * [Really good OpenID-Connect E-Book by Bruno Krebs](https://auth0.com/resources/ebooks/the-openid-connect-handbook)
 * [Keycloak Documentation](https://www.keycloak.org/documentation)
-* [oauth2proxy Documenation](https://oauth2-proxy.github.io/oauth2-proxy/docs/configuration/overview/)
+* [oauth2proxy Documentation](https://oauth2-proxy.github.io/oauth2-proxy/docs/configuration/overview/)
 
 <sup style="font-style: italic;">by Yannik Schmidt</sup><br>
 <sup>**Tags:** _Ansible, IAM/SSO, Keycloak, oauth2proxy_</sup>
