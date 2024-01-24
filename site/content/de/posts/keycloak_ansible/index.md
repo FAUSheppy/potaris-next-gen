@@ -61,6 +61,7 @@ Let's start with the Keycloak compose file. If you are going with Ansible this s
           - PROXY_ADDRESS_FORWARDING=true
           - KC_PROXY=edge
           - KC_LOG_LEVEL=ALL
+          - KC_DB=postgres # <- no longer the default
           - KC_DB_URL_HOST=postgres
           - KC_DB_USERNAME=keycloak
           - KC_DB_PASSWORD={{ keycloak_postgres_password }}
