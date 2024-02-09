@@ -42,7 +42,7 @@ If you want to script the process and do it for multiple file, consider doing it
 Since you are potentially giving out these prints to "untrusted" third-parties, remember to use a really strong passphrase here WHICH YOU CAN REMEMBER, for example **five random medium length  words**.
 
 ### Check the size
-The tool we are using is not going to tell is if we are above the maximum size for our QR-Codes. QR-Codes with "H" (high) error-resistance (30%) can store up to 2047 bits of information. If you are encoding a binary file and have to convert it to base64, remember to add some buffer - though we are going to notice later if we are missing data:
+The tool we are using is not going to tell us, if we are above the maximum size for our QR-Codes. QR-Codes with "H" (high) error-resistance (30%) can store up to 2047 bits of information. If you are encoding a binary file and have to convert it to base64, remember to add some buffer - though we are going to notice later if we are missing data:
 
     max_size=2000
     test $(stat -c %s logins_1.csv.gpg) -gt $max_size && echo "logins_1.csv.gpg too big" && exit 1
