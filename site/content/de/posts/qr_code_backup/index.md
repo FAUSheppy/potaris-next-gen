@@ -23,7 +23,7 @@ If you have the technical know-how and want to hard-copy backup important passwo
 
 ## The Process
 ### Requirements
-We need a base64-encoder, a QR-encoder, a QR-decoder, an image/PDF conversion tool, a base64-decoder and GPG. On Debian, this equates to
+We need a base64-encoder, a QR-encoder, a QR-decoder, an image/PDF conversion tool and GPG. On Debian, this equates to
 
     apt install coreutils imagemagick zbar-tools gpg qrencode
 
