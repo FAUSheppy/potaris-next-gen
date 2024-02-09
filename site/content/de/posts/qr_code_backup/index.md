@@ -14,7 +14,7 @@ description: QR-Codes as Key-Backups
             text-align: center;
             font-family: monospace;">
   Easy Difficulty
-</div> 
+</div>
 
 # QR-Codes as Key-Backups
 
@@ -26,7 +26,7 @@ If you have the technical know-how and want to hard-copy backup important passwo
 We need a base64-encoder, a QR-encoder, a QR-decoder, an image/PDF conversion tool, a base64-decoder and GPG. On Debian this equates to
 
     apt install coreutils imagemagick zbar-tools gpg qrencode
-    
+
 These packages pretty standard and should be widely available under the same or similar names on other distributions.
 
 ### GPG Encrypt the file
@@ -38,9 +38,9 @@ If you want to script the process and do it for multiple file, consider doing it
 
     pass=$(python -c "print(input(), end='')")
     gpg --yes --batch --passphrase $pass --symmetric --cipher-algo AES256 logins_1.csv
-    
+
 Since you are potentially giving out these prints to "untrusted" third-parties, remember to use a really strong passphrase here WHICH YOU CAN REMEMBER, for example **five random medium length  words**.
-    
+
 ### Check the size
 The tool we are using is not going to tell is if we are above the maximum size for our QR-Codes. QR-Codes with "H" (high) error-resistance (30%) can store up to 2047 bits of information. If you are encoding a binary file and have to convert it to base64, remember to add some buffer - though we are going to notice later if we are missing data:
 
