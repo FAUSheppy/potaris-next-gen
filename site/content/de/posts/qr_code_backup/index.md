@@ -23,13 +23,13 @@ If you have the technical know-how and want to hard-copy backup important passwo
 
 ## The Process
 ### Requirements
-We need a base64-encoder, a QR-encoder, a QR-decoder, an image/PDF conversion tool, a base64-decoder and GPG. On Debian this equates to
+We need a base64-encoder, a QR-encoder, a QR-decoder, an image/PDF conversion tool, a base64-decoder and GPG. On Debian, this equates to
 
     apt install coreutils imagemagick zbar-tools gpg qrencode
 
 These packages pretty standard and should be widely available under the same or similar names on other distributions.
 
-### GPG Encrypt the file
+### GPG encrypt the file
 You can encrypt a file like this:
 
     gpg --symmetric --cipher-algo AES256 logins_1.csv
