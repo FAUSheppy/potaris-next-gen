@@ -4,10 +4,12 @@ description: 'CV Yannik Schmidt'
 author: Yannik Schmidt
 ---
 <style>.toc{ display: none } .header{ display: none !important }
-sup{
-    float: right;
+.company-info{
     color: #8fd526;
-    top: 0.5em;
+    float: right;
+    font-size: 79%;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
 }
 p{
     text-align: unset;
@@ -26,7 +28,7 @@ Large scale private cloud migration of third-party applications based on
 both Windows and Linux using Ansible, Azure DevOps and Python with a
 focus on monitoring and anomaly-detection in the highly regulated
 German banking sector.
-<br><sup>ING DiBa AG, 6 months</sup><br><br>
+<br><p class="company-info">ING DiBa AG, 6 months</p><br><br>
 
 **Python Fullstack Developer**<br>
 Extending the Identity-Access-Management (IAM) System with Keycloak
@@ -35,24 +37,24 @@ German Ministry of the Interior. Specifically responsible for integrating
 SSO into the existing UCS (Python) product, as well as the design and
 implementation of an express.js/container based middleware between
 Nextcloud and Owncloud.
-<br><sup>Univention GmbH, 10 months</sup><br><br>
+<br><p class="company-info">Univention GmbH, 10 months</p><br><br>
 
 **Fullstack Developer**<br>
 Implementing feature requests for Python-software, used in analyzing
 Infrared measurements of apartment complexes and create a GitHub-
 Actions pipelines for containerization and deployment.
-<br><sup>Thermoscan Thermographie GmbH, 14 months</sup><br><br>
+<br><p class="company-info">Thermoscan Thermographie GmbH, 14 months</p><br><br>
 
 **Python Fullstack Developer**<br>
 Development of a livestream and front-end and back-end system for use by Pure Storage for webcasts during the COVID-19 pandemic.
-<br><sup>The Marlow Pugnetti Company, 2 months</sup><br><br>
+<br><p class="company-info">The Marlow Pugnetti Company, 2 months</p><br><br>
 
 **Fullstack Developer**<br>
 Development of business logic for contract management and data-
 analysis software for diagnosing the energy efficiency of apartment
 complexes. Based primarily on Python/flask (analysis, web-server) and
 C++/Qt5 (desktop native applications) with GitHub-Action pipelines for build containers.
-<br><sup>Thermoscan Thermographie GmbH, 26 months</sup><br><br>
+<br><p class="company-info">Thermoscan Thermographie GmbH, 26 months</p><br><br>
 
 **Linux Administrator**<br>
 Responsible for monitoring and operation of various Java-web
@@ -61,7 +63,7 @@ the 2022 census. Additionally, creation of Ansible-modules (Python) for
 additional automation of the mostly Linux based infrastructure Responsible for monitoring and operation of various Java-web applications and database backends for the German death statistics and
 the 2022 census. Additionally, creation of Ansible-modules (Python) for
 additional automation of the mostly Linux based infrastructure
-<br><sup>State Office for Statistics Bavaria, 7 months</sup><br><br>
+<br><p class="company-info">State Office for Statistics Bavaria, 7 months</p><br><br>
 
 **Linux Administrator**<br>
 Management of the ~2000 units Linux server cluster (CentOS, Debian)
@@ -69,7 +71,7 @@ for the Fact-Finder online-shop backend used by amongst others
 Intersport and Mytheresa. Responsible for automation (Ansible, Python
 with Rundeck), monitoring (Zabbix, Python, Grafana) and general
 incident management.
-<br><sup>Omikron Data Quality GmbH, 13 months</sup><br><br>
+<br><p class="company-info">Omikron Data Quality GmbH, 13 months</p><br><br>
 
 ## Education
 

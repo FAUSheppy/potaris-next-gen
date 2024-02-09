@@ -4,10 +4,12 @@ description: 'Lebenslauf Yannik Schmidt'
 author: Yannik Schmidt
 ---
 <style>.toc{ display: none } .header{ display: none !important }
-sup{
-     float: right;
-     color: #8fd526;
-     top: 0.5em;
+.company-info{
+    color: #8fd526;
+    float: right;
+    font-size: 79%;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
 }
 p{
     text-align: unset;
@@ -26,7 +28,7 @@ Groß angelegte Private Cloud Migration von Third-Party Anwendungen auf
 Windows und Linux im HV Bankumfeld auf Basis von Ansible, Azure DevOps
 und Python mit Schwerpunkt auf Monitoring (Prometheus, Grafana, ELK-
 Stack).
-<br><sup>ING DiBa AG, 6 Monate</sup><br><br>
+<br><p class="company-info">ING DiBa AG, 6 Monate</p><br><br>
 
 **Python Fullstack Entwickler**<br>
 Erweiterung des Identität-Access-Management (IAM) Systems auf Basis von
@@ -34,29 +36,28 @@ Keycloak/OAuth2 für den Pilotbetrieb des Sovereign Workplace (SWP) für das
 Bundesministerium des Innern. Insbesondere direkte Zusammenarbeit mit
 Nextcloud, Synapse und dem Open-XChange-Team, zur Implementierung von
 applikationsübergreifenden Authentifizierung.
-<br><sup>Univention GmbH, 10 Monate</sup><br><br>
+<br><p class="company-info">Univention GmbH, 10 Monate</p><br><br>
 
 **Fullstack Entwickler**<br>
 Bearbeitung von Feature-Requests für Python-Software zur Wohngebäudediagnostik & Wärmebild-Datenanalyse aus vorherigen Projekten, insbesondere Containerisierung und GitHub-CI Integration.
-<br><sup>Thermoscan Thermographie GmbH, 14 Monate</sup><br><br>
+<br><p class="company-info">Thermoscan Thermographie GmbH, 14 Monate</p><br><br>
 
 **Python Fullstack Entwickler**<br>
 Entwicklung eines Livestream & Front- und Backends zur Nutzung u.a. von Pure-Storage für Konferenzen während der Corona-Pandemie.
-<br><sup>The Marlow Pugnetti Company, 2 Monate</sup><br><br>
+<br><p class="company-info">The Marlow Pugnetti Company, 2 Monate</p><br><br>
 
 **Fullstack Entwickler**<br>
 Entwicklung von Businesslogik zur Verwaltung von Aufträgen und
 Datenanalyse in der Wohngebäudediagnostik. Primär auf Basis von Python
 (Analyse) und C++/Qt5 (Frontend) mit docker-compose Setups auf Linux
 (Debian), Automatisierung via Github Actions.
-<br><br><sup>Thermoscan Thermographie GmbH, 14 Monate</sup><br><br>
+<br><p class="company-info">Thermoscan Thermographie GmbH, 14 Monate</p><br><br>
 
 **Linux Administrator**<br>
 Verantwortlicher für Deployment & Betrieb von diversen Java-Web
 Anwendungen und Datenbanken für den Zensus 2022 und die deutsche
-Sterbestatistik. Server primär Debian und CentOS, Einsatz diverser
-quelloffener Technologien.
-<br><br><sup>Bayrisches Landesamt für Statistik, 7 Monate</sup><br><br>
+Sterbestatistik. Server primär Debian und CentOS, Einsatz diverser quelloffener Technologien.
+<br><p class="company-info">Bayrisches Landesamt für Statistik, 7 Monate</p><br><br>
 
 **Linux Administrator**<br>
 Management des ~2000 Einheiten Serverclusters des Fact-Finder Backends
@@ -64,7 +65,7 @@ für Onlineshops, u.a. für Intersport & Mytheresa. Verantwortlich für
 Automatisierung (Ansible, portainer, docker-swarm), Monitoring (Zabbix,
 python, Grafana) und allgemeine Linuxthemen. Migration nach Kubernetes
 für die MediaMarkt-Saturn Gruppe.
-<br><sup>Omikron Data Quality GmbH, 13 Monate</sup><br><br>
+<br><p class="company-info">Omikron Data Quality GmbH, 13 Monate</p><br><br>
 
 ## Studium
 
