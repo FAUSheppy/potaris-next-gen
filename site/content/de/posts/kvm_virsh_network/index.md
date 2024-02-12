@@ -4,8 +4,6 @@ date: 2020-04-08
 description: virtio Network speedup for virsh/KVM
 ---
 
-# QR-Codes as Key-Backups
-
 <div style="background-color: #30df56 !important;
             color: black;
             font-weight: bold;
