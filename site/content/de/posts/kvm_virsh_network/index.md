@@ -16,7 +16,7 @@ description: virtio Network speedup for virsh/KVM
 
 # KVM/virsh Network Optimization
 
-Using `libvirt/virsh` or `qemu` directly you might have noticed, that your networks are kind of slow. 10mbit slow to be exact. That's because the default NIC is kind of slow and bad and unless you are running a really esoteric Unix, have a stone-age CPU or run your VMs as non-root, you can and should use the virtio kernel drivers for network.
+Using `libvirt/virsh` or `qemu` directly you might have noticed, that your networks are kind of slow. 10mbit slow to be exact. That's because the default NIC itself is quite slow and unless you are running some really esoteric Unix, have a stone-age CPU or run your VMs as non-root, you can and should use the virtio kernel drivers for network.
 
 ## Process
 To successfully use `virtio`, you need to:
