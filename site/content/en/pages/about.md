@@ -23,6 +23,14 @@ p{
 
 ## Project history
 
+**Site Reliability Engineer**<br>
+Enhancing the roboustness of a multi TB/day monitoring system, using a ELK (Elasticsearch, Logstash, Kibana), VictoriaMetrics, and Grafana enterprise monitoring setup. Designing and implementing architectural improvements to handle large data loads and integrate the system with the coperate cloud self service portal.
+<br><p class="company-info">Bundesagentur für Arbeit, 18 months (current)</p><br><br>
+
+**Python Fullstack Developer**<br>
+Middleware for ESM-Integration for self analysis export of recycling machines. Written in Python with flask-frontend, MSSQL-backend and JSON API. Development of GitHub-Actions build pipelines and Docker integration.
+<br><p class="company-info">Anlagenbau Günther, 6 months</p><br><br>
+
 **DevOps Engineer**<br>
 Large scale private cloud migration of third-party applications based on
 both Windows and Linux using Ansible, Azure DevOps and Python with a

@@ -23,6 +23,10 @@ p{
 
 ## Projektübersicht
 
+**DevOps/Observability Engineer**<br>
+Verbesserung der Robustheit eines 20TB/Tag Enterprise Monitoring-Systems bestehend aus ELK (Elasticsearch, Logstash, Kibana), VictoriaMetrics und Grafana. Entwurf und Implementierung architektonischer Verbesserungen zur Skalierung für zukünftige höhere Datenmengen und Integration des Systems in ein Self-Service-Portal der Unternehmens-Cloud.
+
+
 **DevOps Engineer**<br>
 Groß angelegte Private Cloud Migration von Third-Party Anwendungen auf
 Windows und Linux im HV Bankumfeld auf Basis von Ansible, Azure DevOps
