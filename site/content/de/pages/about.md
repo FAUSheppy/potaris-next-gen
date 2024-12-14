@@ -25,7 +25,11 @@ p{
 
 **DevOps/Observability Engineer**<br>
 Verbesserung der Robustheit eines 20TB/Tag Enterprise Monitoring-Systems bestehend aus ELK (Elasticsearch, Logstash, Kibana), VictoriaMetrics und Grafana. Entwurf und Implementierung architektonischer Verbesserungen zur Skalierung für zukünftige höhere Datenmengen und Integration des Systems in ein Self-Service-Portal der Unternehmens-Cloud.
+<br><p class="company-info">Bundesagentur für Arbeit, 18 Monate</p><br><br>
 
+**Python Fullstack Developer**<br>
+Middleware für EPM-Integration von Selbstanalyse-Exporten von industriellen Recycling-Maschinen. Umsetzung durch ein Python-Flask Frontend mit MSSQL-backend und JSON API. Automatisierung von Prozessen und d Container-Builds mit GitHub-Actions.
+<br><p class="company-info">Anlagenbau Günther, 6 months</p><br><br>
 
 **DevOps Engineer**<br>
 Groß angelegte Private Cloud Migration von Third-Party Anwendungen auf
