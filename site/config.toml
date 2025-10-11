@@ -44,6 +44,11 @@ disqusShortname = ''
     name = 'About'
     url = '/about/'
     weight = 30
+  [[Languages.en-gb.menu.main]]
+    pageRef="keys"
+    name = 'Keys'
+    url = '/keys/'
+    weight = 30
 
 [Languages.en-gb.params]
   sitename = "Yannik Schmidt"
@@ -93,6 +98,11 @@ disqusShortname = ''
     pageRef="about"
     name = 'Über mich'
     url = '/about/'
+    weight = 30
+  [[Languages.de-de.menu.main]]
+    pageRef="keys"
+    name = 'Keys'
+    url = '/keys/'
     weight = 30
 
 [Languages.de-de.params]
