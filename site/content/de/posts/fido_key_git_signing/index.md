@@ -1,6 +1,6 @@
 ---
 title: Git-Commit Signatures with fido2-keys
-date: 2025-30-10
+date: 2025-10-27
 description: SSH-key based git-signing, ecdsa-sk & fido2
 ---
 
