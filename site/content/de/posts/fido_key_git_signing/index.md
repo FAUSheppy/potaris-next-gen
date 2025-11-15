@@ -153,5 +153,8 @@ Surprisingly 20 years after git's release, there is no industry standard for doi
 
 But then again. Git commit signing, for whatever reason, isn't really something most orgs do. Laziness really is the death of security.
 
+### Updates
+- *2025-11-15:* Frustratingly I ran into another lack of verification options only weeks after writing this article, when I noticed the otherwise great [fleet-gitops solution](https://github.com/rancher/fleet) does in fact not support it either. I did open a [feature request](https://github.com/rancher/fleet/issues/4333) for it, let's see if something comes from that.
+
 <sup style="font-style: italic;">by Yannik Schmidt</sup><br>
 <sup>**Tags:** _Linux, git, Fido-2, Security_</sup>
