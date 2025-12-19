@@ -142,7 +142,7 @@ The state of client side verification is quite terrible. There is no dedicated f
     if __name__ == "__main__":
         main()
 
-you can run it like this (fro within the repository):
+Run it like this (from within the repository):
 
     python check_signatures.py origin $(git rev-parse --abbrev-ref HEAD)
 
