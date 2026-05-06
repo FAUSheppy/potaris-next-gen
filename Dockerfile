@@ -1,7 +1,7 @@
 FROM alpine
 
 RUN apk add git
-RUN apk add --no-cache --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community hugo
+RUN apk add --no-cache --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community hugo=0.152.2-r5
 
 RUN hugo new site hugo-site
 WORKDIR /hugo-site
