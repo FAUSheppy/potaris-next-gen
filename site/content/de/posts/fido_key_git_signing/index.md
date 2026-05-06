@@ -155,6 +155,7 @@ But then again. Git commit signing, for whatever reason, isn't really something 
 
 ### Updates
 - *2025-11-15:* Frustratingly I ran into another lack of verification options only weeks after writing this article, when I noticed the otherwise great [fleet-gitops solution](https://github.com/rancher/fleet) does in fact not support it either. I did open a [feature request](https://github.com/rancher/fleet/issues/4333) for it, let's see if something comes from that.
+- *2026-05-05:* Multiple people have asked, if the key stub remaining on the disk contains any secrets or if it could be considered public. The main threat from a stub-key leak is that it enables *malicious signing requests* to the hardware key. So no, the key should not be considered public and should be regenerated & rotated if leaked, but it's still useless without the hardware key.
 
 <sup style="font-style: italic;">by Yannik Schmidt</sup><br>
 <sup>**Tags:** _Linux, git, Fido-2, Security_</sup>
