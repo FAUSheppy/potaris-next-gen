@@ -118,3 +118,5 @@ Our offer includes links to external websites of third parties, the content of w
 
 ### Privacy
 As an IT-company, we take your privacy very seriously and wants to take a stance for internet privacy and your right to informational self-determination. We do not collect any personal identifiable data. This means no information about your visit to this site exists on our side after you have left. The only information we will ever save is the information you provide us with during a contact request.
+
+For Details & DSGVO Legal check the [German version](https://potaris.de/pages/about/)
