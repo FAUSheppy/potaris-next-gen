@@ -112,4 +112,58 @@ Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Rich
 Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.
 
 ### Datenschutz
-Die Nutzung unserer Webseite ist in der Regel ohne Angabe personenbezogener Daten möglich. Soweit auf unseren Seiten personenbezogene Daten (beispielsweise Name, Anschrift oder eMail-Adressen) erhoben werden, erfolgt dies, soweit möglich, stets auf freiwilliger Basis. Diese Daten werden ohne Ihre ausdrückliche Zustimmung nicht an Dritte weitergegeben. Wir weisen darauf hin, dass die Datenübertragung im Internet (z.B. bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich. Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten durch Dritte zur Übersendung von nicht ausdrücklich angeforderter Werbung und Informationsmaterialien wird hiermit ausdrücklich widersprochen. Die Betreiber der Seiten behalten sich ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen, etwa durch Spam-Mails, vor.
+Als IT-Unternehmen ist
+
+## Verantwortlicher
+
+Verantwortlich für diese Website ist:
+
+Potaris IT UG
+Langenzenner Straße 28
+yannik.schmidt@potaris.de
+
+## Hosting
+Diese Website wird bei der Hetzner Online GmbH gehostet:
+
+    Hetzner Online GmbH
+    Industriestr. 25
+    91710 Gunzenhausen
+    Deutschland
+
+Weitere Informationen finden Sie in der Datenschutzerklärung von Hetzner:
+[Hetzner Datenschutzerklärung](https://www.hetzner.com/legal/privacy-policy/)
+
+# Zugriffsdaten / Server-Logfiles
+Der Hostinganbieter dieser Website erhebt und speichert automatisch Informationen in sogenannten Server-Logfiles, die Ihr Browser automatisch übermittelt. Dies sind insbesondere:
+
+IP-Adresse (in persistenten logs nur anonymisiert)
+Datum und Uhrzeit der Anfrage
+Browsertyp und Browserversion
+verwendetes Betriebssystem
+aufgerufene Seiten oder Dateien
+
+Die Verarbeitung dieser Daten erfolgt zur technisch fehlerfreien Bereitstellung und Sicherheit der Website auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO.
+
+## Kontaktaufnahme
+
+Wenn Sie per E-Mail oder telefonisch Kontakt aufnehmen, werden die von Ihnen übermittelten Daten ausschließlich zur Bearbeitung Ihrer Anfrage verwendet.
+Eine Weitergabe dieser Daten an Dritte erfolgt nicht ohne Ihre ausdrückliche Zustimmung.
+
+## Cookies und Tracking
+
+Diese Website verwendet keine Cookies zu Analyse-, Tracking- oder Werbezwecken.
+Es werden keine externen Inhalte oder Analysedienste eingebunden.
+
+## Ihre Rechte
+
+Sie haben im Rahmen der geltenden gesetzlichen Bestimmungen insbesondere folgende Rechte:
+
+- Auskunft über Ihre gespeicherten Daten
+- Berichtigung unrichtiger Daten
+- Löschung Ihrer Daten
+- Einschränkung der Verarbeitung
+- Widerspruch gegen die Verarbeitung
+- Datenübertragbarkeit
+- Beschwerderecht
+
+Sie haben das Recht, sich bei einer Datenschutzaufsichtsbehörde über die Verarbeitung personenbezogener Daten zu beschweren.
