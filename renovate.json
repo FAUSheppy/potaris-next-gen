@@ -1,3 +1,15 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json"
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "packageRules": [
+    {
+      "description": "Update Alpine packages",
+      "matchDatasources": ["apk"],
+      "registryUrls": [
+        "https://dl-cdn.alpinelinux.org/alpine?branch=edge&components=main,community&arch=x86_64"
+      ]
+    }
+  ]
 }
