@@ -111,9 +111,6 @@ Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Rich
 ### Haftung für Links
 Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.
 
-### Datenschutz
-Als IT-Unternehmen ist
-
 ## Verantwortlicher
 
 Verantwortlich für diese Website ist:
@@ -122,6 +119,7 @@ Potaris IT UG
 Langenzenner Straße 28
 yannik.schmidt@potaris.de
 
+# Datenschutz
 ## Hosting
 Diese Website wird bei der Hetzner Online GmbH gehostet:
 
@@ -133,7 +131,7 @@ Diese Website wird bei der Hetzner Online GmbH gehostet:
 Weitere Informationen finden Sie in der Datenschutzerklärung von Hetzner:
 [Hetzner Datenschutzerklärung](https://www.hetzner.com/legal/privacy-policy/)
 
-# Zugriffsdaten / Server-Logfiles
+## Zugriffsdaten / Server-Logfiles
 Der Hostinganbieter dieser Website erhebt und speichert automatisch Informationen in sogenannten Server-Logfiles, die Ihr Browser automatisch übermittelt. Dies sind insbesondere:
 
 IP-Adresse (in persistenten logs nur anonymisiert)
