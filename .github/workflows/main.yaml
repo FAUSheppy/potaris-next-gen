@@ -75,3 +75,13 @@ jobs:
           git tag "image-v${VERSION}" "$GITHUB_SHA"
           git push origin "image-v${VERSION}"
 
+      - name: Trigger Renovate for atlantis-fleet-ops
+        env:
+          RENOVATE_WEBHOOK_TOKEN: ${{ secrets.RENOVATE_WEBHOOK_TOKEN }}
+          RENOVATE_WEBHOOK_URL: "https://renovate-webhook.services.atlantishq.de"
+        run: |
+          curl --fail-with-body --show-error --silent \
+            --retry 3 \
+            -X POST \
+            "${RENOVATE_WEBHOOK_URL}/webhook/v1/schedule?project=FAUSheppy%2Fatlantis-fleet-ops" \
+            -H "Authorization: Bearer ${RENOVATE_WEBHOOK_TOKEN}"
