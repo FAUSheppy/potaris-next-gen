@@ -164,4 +164,4 @@ Sie haben im Rahmen der geltenden gesetzlichen Bestimmungen insbesondere folgend
 - Datenübertragbarkeit
 - Beschwerderecht
 
-Sie haben das Recht, sich bei einer Datenschutzaufsichtsbehörde über die Verarbeitung personenbezogener Daten zu beschweren.
+Sie haben immer das Recht, sich bei einer Datenschutzaufsichtsbehörde über die Verarbeitung personenbezogener Daten zu beschweren.
