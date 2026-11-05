@@ -1,5 +1,6 @@
 FROM alpine:3.24
 
+# test-version
 RUN apk add git
 RUN apk add --no-cache --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community hugo=0.169.0-r1
 
