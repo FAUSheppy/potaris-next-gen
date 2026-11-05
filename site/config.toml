@@ -50,6 +50,13 @@ disqusShortname = ''
     url = '/keys/'
     weight = 30
 
+[params.author]
+  intro = "Yannik Schmidt"
+  email = "noreply@atlantishq.de"
+  name = "Yannik Schmidt"
+  description = "Freelancer focusing on Python, Linux, DevOps and Fullstack"
+
+
 [Languages.en-gb.params]
   sitename = "Yannik Schmidt"
   defaultColor = "dark"
