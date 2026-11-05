@@ -1,32 +1,77 @@
-name: Container Build for potaris-next-gen
+
+name: Container Build potaris-next-gen
 
 on:
   push:
     branches:
-      - "master"
+      - master
+
+permissions:
+  contents: write
+
+concurrency:
+  group: potaris-next-gen-image-release
+  cancel-in-progress: false
 
 jobs:
   docker:
     runs-on: ubuntu-latest
     environment:
-        name: prod
+      name: prod
+
     steps:
-      - uses: actions/checkout@v7
-      -
-        name: Checkout
-        uses: actions/checkout@v7
-      -
-        name: Login to Docker Registry
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Determine next version
+        id: version
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git fetch --force --tags
+
+          LAST=$(git tag -l 'image-v*' \
+            | grep -E '^image-v[0-9]+\.[0-9]+\.[0-9]+$' \
+            | sed 's/^image-v//' \
+            | sort -V \
+            | tail -n 1 || true)
+
+          if [ -z "$LAST" ]; then
+            VERSION="1.0.0"
+          else
+            IFS='.' read -r MAJOR MINOR PATCH <<< "$LAST"
+            VERSION="${MAJOR}.${MINOR}.$((PATCH + 1))"
+          fi
+
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Building image version $VERSION"
+
+      - name: Login to Docker Registry
         uses: docker/login-action@v4
         with:
           registry: ${{ secrets.REGISTRY }}
           username: ${{ secrets.REGISTRY_USER }}
           password: ${{ secrets.REGISTRY_PASS }}
-      -
-        name: build and push potaris next-gen
+
+      - name: Build and push potaris next-gen
         uses: docker/build-push-action@v7
         with:
           context: .
           platforms: linux/amd64
           push: true
-          tags: "${{ secrets.REGISTRY }}/atlantishq/potaris-next-gen-web:latest"
+          tags: |
+            ${{ secrets.REGISTRY }}/atlantishq/potaris-next-gen-web:${{ steps.version.outputs.version }}
+            ${{ secrets.REGISTRY }}/atlantishq/potaris-next-gen-web:latest
+
+      - name: Create Git version tag
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          set -euo pipefail
+
+          git tag "image-v${VERSION}" "$GITHUB_SHA"
+          git push origin "image-v${VERSION}"
+
