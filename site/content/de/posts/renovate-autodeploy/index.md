@@ -14,15 +14,15 @@ description: A full deployment flow from commit to deployment
   Medium Difficulty
 </div>
 
-In this post, I want to describe a CI/CD (Continuous Integration/Continuous Deployment) setup I recently created. It's really nothing special, which is perhaps exactly what makes it special to me: It's simplicity, clear architectural boundries and reliance on mature tooling.
+In this post, I want to describe a CI/CD (Continuous Integration/Continuous Deployment) setup I recently created. It's really nothing special, which is perhaps exactly what makes it special to me: Its simplicity, clear architectural boundaries and reliance on mature tooling.
 
-There are a two components you need to understand before we start:
+There are two components you need to understand before we start:
 
 - [Fleet](https://fleet.rancher.io/), a GitOps integration similar to [Flux](https://fluxcd.io/) or [Argo](https://argoproj.github.io/)
 - [Renovate](https://www.mend.io/renovate/), mostly used to automatically create Pull Requests for library or in this case container version updates
 
 I'm hosting my own Renovate as a Kubernetes Operator, but this is very much possible with the GitHub [Renovate App](https://github.com/apps/renovate).
-It also doesn't really matter if you use another GitOps solution, the image tags will always word the same way. I'm using [Harbor](https://goharbor.io/) as my registry but any public or selfhosted registry will do. This article assumes you have a working Kubernetes with a GitOps-Setup, aswell as a working ingress and cert-issuer setup.
+It also doesn't really matter if you use another GitOps solution, the image tags will always work the same way. I'm using [Harbor](https://goharbor.io/) as my registry but any public or selfhosted registry will do. This article assumes you have a working Kubernetes with a GitOps-Setup, as well as a working ingress and cert-issuer setup.
 
 # Overview
 This is the setup we are going to build:
@@ -30,21 +30,21 @@ This is the setup we are going to build:
 ![overview](/renovate-autodeploy/renovate-autodeploy-drawio.png)
 
 - build & push a new container
-- trigger a renovate run on a gitops repository
+- trigger a Renovate run on a gitops repository
 - update the gitops repository
 - have Fleet (or other GitOps-controller) pull and deploy the changes
 
 # Preparing Renovate
-For using a selfhosted renovate, we need to both create the operator in our Kubernetes and add a job from our application repository. Because we will require a webhook endpoint to trigger a scan, after the build of the application container succeeds, we also need to enable webhooks.
+For using a selfhosted Renovate, we need to both create the operator in our Kubernetes and add a job from our application repository. Because we will require a webhook endpoint to trigger a scan, after the build of the application container succeeds, we also need to enable webhooks.
 
 ## Renovate Operator
-The renovate operator is installed with helm. You can find a full values file for the helm installation [in my Infra-Ops repository](https://github.com/FAUSheppy/atlantis-fleet-infra/blob/master/renovate-operator/values.yaml). Adapt the relevant values, especially your domain and make sure to include the webhook-section.
+The Renovate operator is installed with helm. You can find a full values file for the helm installation [in my Infra-Ops repository](https://github.com/FAUSheppy/atlantis-fleet-infra/blob/master/renovate-operator/values.yaml). Adapt the relevant values, especially your domain and make sure to include the webhook-section.
 
 Then install the operator like this:
 
     kubectl create namespace renovate
         helm upgrade --install renovate \
-        oci://ghcr.io/renovatebot/charts/renovate \
+        oci://ghcr.io/mogenius/helm-charts/renovate-operator \
         --namespace renovate \
         --values values.yaml
 
@@ -61,7 +61,7 @@ Now create a [fine grained access token](https://github.blog/security/applicatio
 ![GitHub Token Permissions](/renovate-autodeploy/token_permissions.png)
 
 ## Renovate Jobs
-With the operator and CRDs in place we can now deploy the actual renovate job, this job will read the GitOps-repository and scan for updated image tags.
+With the operator and CRDs in place we can now deploy the actual Renovate job, this job will read the GitOps-repository and scan for updated image tags.
 
     apiVersion: renovate-operator.mogenius.com/v1alpha1
     kind: RenovateJob
@@ -79,7 +79,7 @@ With the operator and CRDs in place we can now deploy the actual renovate job, t
         enabled: true
         secretRef:
             name: renovate-github
-            key: WEBHOOK_TOKEN
+            key: RENOVATE_WEBHOOK_TOKEN
 
     discoveryFilters:
         - FAUSheppy/atlantis-fleet-ops # your repo, <github-user>/<repository-name>
@@ -89,16 +89,22 @@ With the operator and CRDs in place we can now deploy the actual renovate job, t
 
 This is a very minimal config, it doesn't include OIDC-access settings, concurrency or default config, for a more complete example see [my own deployment](https://github.com/FAUSheppy/atlantis-fleet-ops/blob/master/renovate-app/github-master-job.yaml).
 
-Finally create the relevant secrets:
+Create the relevant secrets:
 
-    kubectl create secret generic renovate-github \
-        --from-literal=WEBHOOK_TOKEN='<secret>' \
-        --from-literal=GITHUB_TOKEN='<github token>'
+    kubectl create secret -n renovate generic renovate-github \
+        --from-literal=RENOVATE_WEBHOOK_TOKEN='<secret>' \
+        --from-literal=GITHUB_TOKEN='<github token>' \
         --from-literal=RENOVATE_TOKEN='<github token>'
+
+Small but important detail here, is that the secret needs to be labled for the operator to use it:
+
+  kubectl label secret renovate-webhook-token -n renovate renovate-operator.mogenius.com/allow-ref=true
 
 and apply the job:
 
     kubectl apply -n renovate -f renovate-job.yaml
+
+You have to run repository discovery once manually (or configure a schedule and wait for it to run). To do this, open the URL/domain you configured for the operator and hit the discovery button for the newly created job.
 
 # Application Repository
 I assume you already have a working Dockerfile build in your repository and that you already know the basics about github workflows or the relevant counterpart in your git-server of choice. But just quickly:
@@ -128,26 +134,26 @@ I assume you already have a working Dockerfile build in your repository and that
 
           - name: Build and push potaris next-gen
             uses: docker/build-push-action@v7
-              with:
-                context: .
-                platforms: linux/amd64
-                push: true
-                tags: |
-                  # we will use this line later for tagging
-                  # ${{ secrets.REGISTRY }}/<project>/<image-name>:${{ steps.version.outputs.version }}
-                  ${{ secrets.REGISTRY }}/<project>/<image-name>:latest
+            with:
+              context: .
+              platforms: linux/amd64
+              push: true
+              tags: |
+                # we will use this line later for tagging
+                # ${{ secrets.REGISTRY }}/<project>/<image-name>:${{ steps.version.outputs.version }}
+                ${{ secrets.REGISTRY }}/<project>/<image-name>:latest
 
 Create the required workflow secrets in the repository settings, while you are at it, also create `WEBHOOK_TOKEN` with the secret from before.
 Now that we built and pushed the container, we still need to do two things:
 
 - create a version tag for builds
-- trigger the renovate run
+- trigger the Renovate run
 
-I will show you a way to create version tags automatically, but you don't have to do this, you can also only tag it manually and then only have the new images deployed after your did so.
+I will show you a way to create version tags automatically, but you don't have to do this, you can also only tag it manually and then only have the new images deployed after you did so.
 
 ## Autocreate/Incrementing Version Tags
 
-To set version tags, first, on the workflow file toplevel, add a concurrency restrication and allow writing contents (because tags count as content):
+To set version tags, first, on the workflow file toplevel, add a concurrency restriction and allow writing contents (because tags count as content):
 
     permissions:
       contents: write
@@ -156,7 +162,7 @@ To set version tags, first, on the workflow file toplevel, add a concurrency res
       group: application
       cancel-in-progress: false
 
-Then add a script to determine the next version. This example will increment build version (meaning 1.0.XXX), while respecting the lastest (manually tagged) minor and major version:
+Then add a script to determine the next version. This example will increment patch version (meaning 1.0.XXX), while respecting the latest (manually tagged) minor and major version:
 
     - name: Determine next version
       id: version
@@ -197,11 +203,11 @@ After the push step (because we don't want to increment tags for failed builds/r
         git tag "image-v${VERSION}" "$GITHUB_SHA"
         git push origin "image-v${VERSION}"
 
-I've been thinking of chaning this behaviour to pull the tags from the registry or something instead to avoid write permission for the action workflow.
+I've been thinking of changing this behaviour to pull the tags from the registry or something instead to avoid write permission for the action workflow.
 
 
 ## Triggering Renovate
-After the build and push is successful, we can trigger a run of our renovate job with this simple step:
+After the build and push is successful, we can trigger a run of our Renovate job with this simple step:
 
       - name: Trigger Renovate gitops repository
         env:
@@ -215,7 +221,7 @@ After the build and push is successful, we can trigger a run of our renovate job
             -H "Authorization: Bearer ${RENOVATE_WEBHOOK_TOKEN}"
 
 # Renovate in the GitOps-repository
-Now we need to enable and configure renovate in the target GitOps-repository via a `renovate.json`.
+Now we need to enable and configure Renovate in the target GitOps-repository via a `renovate.json`.
 There are some caveats, but I will provide you with a full config, so it will work with any setup:
 
     {
@@ -251,19 +257,19 @@ There are some caveats, but I will provide you with a full config, so it will wo
         ]
     }
 
-What this this config does:
+What this config does:
 
-- extend the default config (in case you added any in your operator deployment)
+- extend Renovate's configuration preset
 - define `.yaml` or  `.yml` as kubernetes file patterns
 - define package rules
     - the first rule is a general matcher, which matches any registry (just for reference, you don't need it for this setup)
-    - the second rule is specific to the registry and project your want to auto-merge
+    - the second rule is specific to the registry and project you want to auto-merge
 
 As for the exact options of the second rule:
 - set versioning to semantic versioning
-- set minimumReleaseAge to null, release age for a triggered renovate doesnt make sense, if you want release age delay you should do it in the application
-- set platformAutomerge to `false` as we don't want to deal with GitHubs automerge
-- set ignoreTests to `false` in case your fleet repos doesn't have GitHub-level tests/ci, because not having any finished CI would otherwise block the automerge
+- set minimumReleaseAge to `null`, as release age for our own, workflow triggered Renovate, doesn't make sense, if you want release age delay you should do it in the application
+- set platformAutomerge to `false` as we don't want to deal with GitHub's automerge
+- set ignoreTests to `true` in case your Fleet repos doesn't have GitHub-level tests/ci, because not having any finished CI would otherwise block the automerge
 
 # Fleet & Check the Setup
 Now create and push a stub commit in the application repo and check all steps:
