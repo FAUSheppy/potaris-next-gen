@@ -1,5 +1,5 @@
 ---
-title: Lean CI/CD with Github-Actions, Fleet and Renovate
+title: Lean CI/CD with GitHub-Actions, Fleet and Renovate
 date: 2026-11-07
 description: A full deployment flow from commit to deployment
 ---
@@ -22,7 +22,7 @@ There are two components you need to understand before we start:
 - [Renovate](https://www.mend.io/renovate/), mostly used to automatically create Pull Requests for library or in this case container version updates
 
 I'm hosting my own Renovate as a Kubernetes Operator, but this is very much possible with the GitHub [Renovate App](https://github.com/apps/renovate).
-It also doesn't really matter if you use another GitOps solution, the image tags will always work the same way. I'm using [Harbor](https://goharbor.io/) as my registry but any public or selfhosted registry will do. This article assumes you have a working Kubernetes with a GitOps-Setup, as well as a working ingress and cert-issuer setup.
+It also doesn't really matter if you use another GitOps solution - the image tags will always work the same way. I'm using [Harbor](https://goharbor.io/) as my registry but any public or selfhosted registry will do. This article assumes you have a working Kubernetes with a GitOps-Setup, as well as a working ingress and cert-issuer setup.
 
 # Overview
 This is the setup we are going to build:
@@ -38,7 +38,7 @@ This is the setup we are going to build:
 For using a selfhosted Renovate, we need to both create the operator in our Kubernetes and add a job from our application repository. Because we will require a webhook endpoint to trigger a scan, after the build of the application container succeeds, we also need to enable webhooks.
 
 ## Renovate Operator
-The Renovate operator is installed with helm. You can find a full values file for the helm installation [in my Infra-Ops repository](https://github.com/FAUSheppy/atlantis-fleet-infra/blob/master/renovate-operator/values.yaml). Adapt the relevant values, especially your domain and make sure to include the webhook-section.
+The Renovate operator is installed with Helm. You can find a full values file for the Helm installation [in my Infra-Ops repository](https://github.com/FAUSheppy/atlantis-fleet-infra/blob/master/renovate-operator/values.yaml). Adapt the relevant values, especially your domain and make sure to include the webhook-section.
 
 Then install the operator like this:
 
@@ -61,7 +61,7 @@ Now create a [fine grained access token](https://github.blog/security/applicatio
 ![GitHub Token Permissions](/renovate-autodeploy/token_permissions.png)
 
 ## Renovate Jobs
-With the operator and CRDs in place we can now deploy the actual Renovate job, this job will read the GitOps-repository and scan for updated image tags.
+With the operator and CRDs in place we can now deploy the actual Renovate job. This job will read the GitOps-repository and scan for updated image tags.
 
     apiVersion: renovate-operator.mogenius.com/v1alpha1
     kind: RenovateJob
@@ -71,6 +71,10 @@ With the operator and CRDs in place we can now deploy the actual Renovate job, t
         image: renovate/renovate
     provider:
         name: github # change if using something else
+
+    # schedule & parallelism are required fields #
+    schedule: "0 20 * * *"
+    parallelism: 1
 
     # set the webhook
     webhook:
@@ -87,7 +91,7 @@ With the operator and CRDs in place we can now deploy the actual Renovate job, t
     # secret ref for github token
     secretRef: renovate-github
 
-This is a very minimal config, it doesn't include OIDC-access settings, concurrency or default config, for a more complete example see [my own deployment](https://github.com/FAUSheppy/atlantis-fleet-ops/blob/master/renovate-app/github-master-job.yaml).
+This is a very minimal config, it doesn't include OIDC-access settings or a default config, for a more complete example see [my own deployment](https://github.com/FAUSheppy/atlantis-fleet-ops/blob/master/renovate-app/github-master-job.yaml).
 
 Create the relevant secrets:
 
@@ -96,9 +100,9 @@ Create the relevant secrets:
         --from-literal=GITHUB_TOKEN='<github token>' \
         --from-literal=RENOVATE_TOKEN='<github token>'
 
-Small but important detail here, is that the secret needs to be labled for the operator to use it:
+Small but important detail here, is that the secret needs to be labeled for the operator to use it:
 
-  kubectl label secret renovate-webhook-token -n renovate renovate-operator.mogenius.com/allow-ref=true
+  kubectl label secret renovate-github -n renovate renovate-operator.mogenius.com/allow-ref=true
 
 and apply the job:
 
@@ -107,7 +111,7 @@ and apply the job:
 You have to run repository discovery once manually (or configure a schedule and wait for it to run). To do this, open the URL/domain you configured for the operator and hit the discovery button for the newly created job.
 
 # Application Repository
-I assume you already have a working Dockerfile build in your repository and that you already know the basics about github workflows or the relevant counterpart in your git-server of choice. But just quickly:
+I assume you already have a working Dockerfile build in your repository and that you already know the basics about GitHub workflows or the relevant counterpart in your git-server of choice. But just quickly:
 
     name: application
     on:
@@ -138,12 +142,12 @@ I assume you already have a working Dockerfile build in your repository and that
               context: .
               platforms: linux/amd64
               push: true
+              # we will use this line later for tagging
+              # ${{ secrets.REGISTRY }}/<project>/<image-name>:${{ steps.version.outputs.version }}
               tags: |
-                # we will use this line later for tagging
-                # ${{ secrets.REGISTRY }}/<project>/<image-name>:${{ steps.version.outputs.version }}
                 ${{ secrets.REGISTRY }}/<project>/<image-name>:latest
 
-Create the required workflow secrets in the repository settings, while you are at it, also create `WEBHOOK_TOKEN` with the secret from before.
+Create the required workflow secrets in the repository settings, while you are at it, also create `RENOVATE_WEBHOOK_TOKEN` with the secret from before.
 Now that we built and pushed the container, we still need to do two things:
 
 - create a version tag for builds
@@ -212,7 +216,7 @@ After the build and push is successful, we can trigger a run of our Renovate job
       - name: Trigger Renovate gitops repository
         env:
           RENOVATE_WEBHOOK_TOKEN: ${{ secrets.RENOVATE_WEBHOOK_TOKEN }}
-          RENOVATE_WEBHOOK_URL: "https://renovate-webhook.services.atlantishq.de"
+          RENOVATE_WEBHOOK_URL: "<https://webhook-domain>"
         run: |
           curl --fail-with-body --show-error --silent \
             --retry 3 \
@@ -222,7 +226,8 @@ After the build and push is successful, we can trigger a run of our Renovate job
 
 # Renovate in the GitOps-repository
 Now we need to enable and configure Renovate in the target GitOps-repository via a `renovate.json`.
-There are some caveats, but I will provide you with a full config, so it will work with any setup:
+There are some caveats, but I will provide you with a full config, so it will work with any setup.
+Make sure to set the correct registry in `matchPackageNames`.
 
     {
         "$schema": "https://docs.renovatebot.com/renovate-schema.json",
@@ -246,7 +251,7 @@ There are some caveats, but I will provide you with a full config, so it will wo
                 "description": "<description>",
                 "matchDatasources": ["docker"],
                 "matchPackageNames": [
-                    "/^registry\\.services\\.atlantishq\\.de\\/atlantishq\\//"
+                    "/^<registry-domain>\\.<domain>\\.<tld>\\/<project>\\//"
                 ],
                 "versioning": "semver",
                 "minimumReleaseAge": null,
@@ -260,16 +265,16 @@ There are some caveats, but I will provide you with a full config, so it will wo
 What this config does:
 
 - extend Renovate's configuration preset
-- define `.yaml` or  `.yml` as kubernetes file patterns
+- define `.yaml` or  `.yml` as Kubernetes file patterns
 - define package rules
     - the first rule is a general matcher, which matches any registry (just for reference, you don't need it for this setup)
     - the second rule is specific to the registry and project you want to auto-merge
 
 As for the exact options of the second rule:
 - set versioning to semantic versioning
-- set minimumReleaseAge to `null`, as release age for our own, workflow triggered Renovate, doesn't make sense, if you want release age delay you should do it in the application
+- set minimumReleaseAge to `null`, as release age for our own, workflow-triggered Renovate, doesn't make sense, if you want release age delay you should do it in the application
 - set platformAutomerge to `false` as we don't want to deal with GitHub's automerge
-- set ignoreTests to `true` in case your Fleet repos doesn't have GitHub-level tests/ci, because not having any finished CI would otherwise block the automerge
+- set ignoreTests to `true` in case your Fleet repos don't have GitHub-level tests/ci, because not having any finished CI would otherwise block the automerge
 
 # Fleet & Check the Setup
 Now create and push a stub commit in the application repo and check all steps:
@@ -287,7 +292,7 @@ Now create and push a stub commit in the application repo and check all steps:
     - polls for changes
     - redeploys bundle/pods with the new image
 
-If everything is working you could also add renovate to your application repo to keep dependencies up to date and have a fully "auto-updating" deployment in your kubernetes. If you need some additional examples for fleet bundles, check my [fleet-ops repository](https://github.com/FAUSheppy/atlantis-fleet-ops/tree/master).
+If everything is working you could also add renovate to your application repo to keep dependencies up to date and have a fully "auto-updating" deployment in your Kubernetes. If you need some additional examples for fleet bundles, check my [fleet-ops repository](https://github.com/FAUSheppy/atlantis-fleet-ops/tree/master).
 
 <sup style="font-style: italic;">by Yannik Schmidt</sup><br>
 <sup>**Tags:** _CI/CD, Kubernetes, GitOps, Renovate, Flux, Container_</sup>
