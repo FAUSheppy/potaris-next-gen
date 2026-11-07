@@ -27,7 +27,7 @@ It also doesn't really matter if you use another GitOps solution, the image tags
 # Overview
 This is the setup we are going to build:
 
-![overview](/renovate/autodeploy/renovate-autodeploy-drawio.png)
+![overview](/renovate-autodeploy/renovate-autodeploy-drawio.png)
 
 - build & push a new container
 - trigger a renovate run on a gitops repository
