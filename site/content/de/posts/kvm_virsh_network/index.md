@@ -16,37 +16,47 @@ description: virtio Network speedup for virsh/KVM
 
 # KVM/virsh Network Optimization
 
-Using `libvirt/virsh` or `qemu` directly you might have noticed, that your networks are kind of slow. 10mbit slow to be exact. That's because the default NIC itself is quite slow and unless you are running some really esoteric Unix, have a stone-age CPU or run your VMs as non-root, you can and should use the virtio kernel drivers for network.
+Using `libvirt/virsh` or `QEMU` directly you might have noticed that your networks might be kind of slow. That's because using the default NIC itself quite suboptimal and unless you are running some really esoteric Unix or have a stone-age CPU you can and should use the virtio kernel drivers for networking.
 
 ## Process
 To successfully use `virtio`, you need to:
 
-- load the relevant kernel modules
-- change the type of the network **and** the guests to `virtio`
+- load the relevant kernel modules (if they aren't loaded by default)
+- change the guests's network-type to `virtio`
 
-### Load the kernel modules
-We need the following kernel modules (on the host machine), which should already be avialiable on most systems after installing qemu with the package manager:
+### Kernel modules
+#### On the hypervisor
+We need the following kernel module on the host machine, which should already be available on most systems after installing QEMU with the package manager:
+
+    modprobe vhost_net
+
+#### On the guest
+Additionally, you need these kernel modules on all guests, which are usually automatically loaded, but just in case:
 
     modprobe virtio_ring
-    modprobe virtio_pci
     modprobe virtio_net
+    modprobe virtio_pci
     modprobe virtio
 
 You can check if it worked by running:
 
     lsmod | grep virtio
 
-To load these modules at boot, add them to `/etc/modules`, one per line, without any other arguments:
+#### Persistence
+In fact it's not actually required to load all modules individually since virtio and virtio_ring are dependencies of `virtio_net`.
+To load modules during boot, add them to `/etc/modules`, one per line, without any other arguments.
 
-    virtio
+    # on host
+    vhost_net
+
+    # on guest
     virtio_net
     virtio_pci
-    virtio_ring
 
 ### Edit the Guests
 To show the current definition of your VM, use:
 
-    virsh dump-xml vm_name
+    virsh dumpxml vm_name
     
 This should contain something like this:
 
@@ -65,40 +75,25 @@ Depending on your initial setup, this might already contain the line:
 
       <model type='virtio'/>
 
-..if not, add the correct model type to the interface block in the VM definition with `virsh edit vm_name`
-    
-### Edit the network
-This only applies if you are running a *virsh*-setup, rather than using only qemu directly. First, check the current contents with `virsh net-dumpxml default` (if you are using the default network). This should look something like this:
-    
-    <network connections='18'>
-      <name>default</name>
-      <uuid>...</uuid>
-      <forward mode='nat'>
-        <nat>
-          <port start='1024' end='65535'/>
-        </nat>
-      </forward>
-      <bridge name='virbr0' stp='on' delay='0'/>
-      <mac address='XX:XX:XX:XX:XX:XX'/>
-      <ip address='192.168.122.1' netmask='255.255.255.0'>
-        <dhcp>
-            ...
-        </dhcp>
-      </ip>
-    </network>
-
-Add the virtio model-type to the toplevel network block aswell:
-
-    virsh net-edit default
-
-Now reboot the host or recreate the network and reboot the guests.
+If not, add the correct model type to the interface block in the VM definition with `virsh edit vm_name`
 
 ## Test the speed
-The changes should now have been applied, check the speed by executing a *dd-pipe-ssh* or similar command on the host machine:
+Shut down and start (not `/sbin/reboot` in the guests!) all edited guests now to apply the changes. Check the speed by executing a *dd-pipe-ssh* or similar command on the host machine:
 
-    dd if=/dev/zero status=progress bs=4096 count=1048576 | ssh VM_ADDRESS 'cat > /dev/null'
+    # simplest way to test, but may be inaccurate for very high speeds because of ssh-overhead
+    dd if=/dev/zero status=progress bs=4096 count=1048576 | ssh -oCompression=no VM_ADDRESS 'cat > /dev/null'
 
-Unfortunally the interfaces will still be listed with 10mbit speed in ethtool or `/proc/interfaces/...` - there is currently not fix for this. If this breaks your monitoring setups checking for bandwith usage, you have to handle it externally.
+    # more accurate test:
+    # on the guest
+    nc -l -p 5001 > /dev/null
+    # on the host
+    dd if=/dev/zero bs=4M count=5000 status=progress | nc -N <VM_ADDRESS> 5001
+
+One final note: The default reported speed for interfaces is often 10 Mbit/s or not set at all. This is relevant if you are using monitoring software, which might be calculating the saturation of a network interface based on this value. You can usually change this setting with:
+
+    sudo ethtool -s eth0 speed 1000 duplex full # 1 Gbit/s
+
+But this change does not persist across reboots, consider adding it as a systemd-service. If this command doesn't work you'll have to refer to relevant documentation.
 
 <sup style="font-style: italic;">by Yannik Schmidt</sup><br>
-<sup>**Tags:** _Linux, KVM/qemu, virsh, Network, Kernel_ </sup>
+<sup>**Tags:** _Linux, KVM/QEMU, virsh, Network, Kernel_ </sup>
