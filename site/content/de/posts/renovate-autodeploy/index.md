@@ -102,7 +102,7 @@ Create the relevant secrets:
 
 Small but important detail here, is that the secret needs to be labeled for the operator to use it:
 
-  kubectl label secret renovate-github -n renovate renovate-operator.mogenius.com/allow-ref=true
+    kubectl label secret renovate-github -n renovate renovate-operator.mogenius.com/allow-ref=true
 
 and apply the job:
 
