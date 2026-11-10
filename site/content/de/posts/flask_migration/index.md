@@ -6,12 +6,12 @@ description: Python Flask Production Migration
 
 I like to start my flask projects with a simple __name__ == "__main__" with argparse and app.run(). But obviously the flask inbuilt server is not the fastest and probably not the safest either. This is why you should eventually use a WSGI-runner like waitress to run your app. This post will show how to migrate, while keeping any standalone capabilities.
 
-## Migrating “__init__” code
+## Migrating “__name__” code
 In short, everything in your if __name__ block is not going to be executed anymore, the simplest solution is to move it to a `@app.before_first_request` annotated function, so:
 
     app = Flask("NAME")
     
-    if __init__ == "__name__":
+    if __name__ == "__main__":
         # arparse stuff
         ...
         # init stuff
@@ -27,7 +27,7 @@ becomes:
         # init stuff
         ...
 
-    if __init__ == "__name__":
+    if __name__ == "__main__":
         # arparse stuff
         ...
         # write arparse results to config
@@ -53,7 +53,7 @@ We can then change it like a namespace-object (basically a dict-object). Remembe
     def doStuff():
         doInitSuff(app.config.SOME_OPTION)
     
-    if __init__ == "__name__":
+    if __name__ == "__main__":
     
         parser = argparse.ArgumentParser()
         parser.add_argument(...)

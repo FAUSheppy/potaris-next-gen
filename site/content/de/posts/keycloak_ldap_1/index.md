@@ -41,7 +41,7 @@ So if you are working on the domain `example.com`, the two domain components are
     # LDAP settings example.com #
     ldap_suffix: dc=example,dc=com
     ldap_group_dn: ou=groups,dc=example,dc=com
-    ldap_user_dn: ou=groups,dc=example,dc=com
+    ldap_user_dn: ou=users,dc=example,dc=com
     # a user-path would be:
     # cn=username,ou=people,dc=example,dc=com
 
@@ -246,7 +246,7 @@ Now we can create our LDAP root organization and admin-user *("Manager")*. Note 
 
     - name: Create LDAP root (2)
       ldap_entry:
-        dn: "cn=Manager,dc=atlantishq,dc=de"
+        dn: "{{ ldap_bind_dn }}"
         objectClass:
           - organizationalRole
         attributes: |

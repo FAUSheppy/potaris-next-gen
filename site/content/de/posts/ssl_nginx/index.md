@@ -15,7 +15,7 @@ Installing should, usually, work via the package manager:
 
 If everything else fails, you can install Certbot via the python package manager:
 
-    python3 -m pip install cerbot
+    python3 -m pip install certbot
 
 ## Preparing Nginx
 Make sure Nginx is available via HTTP. Be careful if you have an HTTPS redirect, while most CAs will connect fine over HTTP (since they must assume you don’t have a certificate yet), some will **not** connect over a broken HTTPS connection, i.e. with an expired or self-signed certificate. If it is not yet installed, install Nginx with:
