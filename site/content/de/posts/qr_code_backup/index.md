@@ -36,21 +36,25 @@ You can encrypt a file like this:
 
 If you want to script the process and do it for multiple file, consider doing it like this instead:
 
-    pass=$(python -c "print(input(), end='')")
-    gpg --yes --batch --passphrase $pass --symmetric --cipher-algo AES256 logins_1.csv
+    read -r -s -p "Passphrase: " pass
+    echo
+    printf '%s\n' "$pass" | gpg --yes --batch --pinentry-mode loopback --passphrase-fd 0 --symmetric --cipher-algo AES256 logins_1.csv
+    unset pass
 
 Since you are potentially giving out these prints to "untrusted" third-parties, remember to use a really strong passphrase here WHICH YOU CAN REMEMBER, for example **five random medium length  words**.
 
 ### Check the size
-The tool we are using is not going to tell us, if we are above the maximum size for our QR-Codes. QR-Codes with "H" (high) error-resistance (30%) can store up to 2047 bits of information. If you are encoding a binary file and have to convert it to base64, remember to add some buffer - though we are going to notice later if we are missing data:
+The tool we are using will fail if we exceed the maximum capacity of our QR-Code, but it doesn't provide a specific error message for this case. QR-Codes with "H" (high) error correction (30%) can store up to 1273 bytes of information. Since Base64 encoding increases the data size by approximately 33%, we need to account for this overhead. This leaves us with a maximum of 954 bytes of binary data, assuming Base64 line wrapping is disabled:
 
-    max_size=2000
+    max_size=954
     test $(stat -c %s logins_1.csv.gpg) -gt $max_size && echo "logins_1.csv.gpg too big" && exit 1
 
 ### Create the QR-Code
-Now we can finally create the QR-code. The base64 encoding, even for binary files, isn't strictly necessary, most modern QR-readers are able to decode binary codes
+Now we can finally create the QR-code. By the way, the base64 encoding, even for binary files, isn't strictly necessary, most modern QR-readers are able to decode binary codes.
 
-    cat logins_1.csv.gpg | base64 | qrencode -l H -s 20 -o logins_1.gpg.png
+Disable line-wrapping with the `-w 0` option to prevent unnecessary extra bytes:
+
+    cat logins_1.csv.gpg | base64 -w 0 | qrencode -l H -s 20 -o logins_1.gpg.png
 
 ### Convert the Image to PDF
 Convert the image to a PDF file for printing:
@@ -64,6 +68,11 @@ I recommend to, at least once check the following process with a full print-scan
     zbarimg -q test_logins_1.gpg.png | sed 's/QR-Code://' | base64 -d > test_logins_1.csv.gpg
     f=logins_1.csv.gpg
     diff $f "test_${f}" && echo $f ok || echo $f diff failed
+
+    # optionally check decryption aswell
+    gpg --output test_logins_1.csv --decrypt "test_${f}" &&
+    cmp logins_1.csv test_logins_1.csv &&
+    echo "decryption ok"
 
 If the files don't match, something went wrong, you should especially recheck the maximum size - otherwise, you are ready to distribute your backup.
 
