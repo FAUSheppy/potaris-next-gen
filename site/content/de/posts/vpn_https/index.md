@@ -15,7 +15,7 @@ Now obviously we are starting to leave the realm of coffee-shop-next-door-blocki
 
 
 
-### Deep package inspection
+### Deep packet inspection
 Lastly, even if DPI is a far less common blocking mechanism (and also kinda illegal in my country), it is an inbuilt feature in some commercially available firewalls, and I know of at least one public hotspot in my area which seems to recognize and block VPN connections over ports 80 and 443 (presumably based on DPI). Way more important perhaps: if you are on vacation in for example Turkey, then assuming that the government analyzes your traffic, flag you for using a VPN, block it and/or blacklist your server, might not be so unreasonable. After all people in Turkey have [gone to jail](https://www.mdr.de/nachrichten/politik/inland/deutsche-in-haft-in-der-tuerkei-100.html) for equally ridiculous reasons.
 
 
@@ -41,7 +41,7 @@ It is always important to remember that a VPN is not Tor. Even if you aren’t h
 ## Outlining the internal workings
 We will use stunnel on our client to connect to the nginx on our server. Nginx will have to multiplex the connection and either provide normal web-content or stream the connection to our VPN server. As said earlier: We cannot protect the request SNI. Therefore if we want to be completely safe, we cannot multiplex based on the SNI (aka the requested subdomain), as an active attacker would easily be able to tell apart a VPN server from an HTTP server, if he attempts to connect to a given SNI. Nevertheless we will do that first in the configuration section below and then build upon it, since this is probably the point where we enter full-scale paranoia territory.
 
-You will need `nginx > 1.15.0` on your server, `stunnel` on your client, and, obviously, `openvpn` on both. The following sections assume you have already set up a working nginx that listens for SSL connections on port 443 and have a working certificate for your domain and at least one subdomain *(I will use my own server 'atlantishq.de' and the subdomain 'vpn.atlantishq.de' as example here)*. Also I will not go in detail on how to set up a VPN server in general and only focus on the non standard part of the openvpn configuration.
+You will need `nginx > 1.15.0` on your server, `stunnel` on your client, and, obviously, `openvpn` on both. The following sections assume you have already set up a working nginx that listens for SSL connections on port 443 and have a working certificate for your domain and at least one subdomain *(I will use my own server 'atlantishq.de' and the subdomain 'vpn.atlantishq.de' as an example here)*. Also I will not go in detail on how to set up a VPN server in general and only focus on the non standard part of the openvpn configuration.
 
 So before we start, your nginx-configuration should look something like this:
 
