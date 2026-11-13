@@ -80,10 +80,10 @@ With the operator and CRDs in place we can now deploy the actual Renovate job. T
     webhook:
         enabled: true
         authentication:
-        enabled: true
-        secretRef:
-            name: renovate-github
-            key: RENOVATE_WEBHOOK_TOKEN
+            enabled: true
+            secretRef:
+                name: renovate-github
+                key: RENOVATE_WEBHOOK_TOKEN
 
     discoveryFilters:
         - FAUSheppy/atlantis-fleet-ops # your repo, <github-user>/<repository-name>
